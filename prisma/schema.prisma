@@ -15,7 +15,7 @@ model Drink {
   name        String
   price       Int
   description String
-  Sale        Sale[]
+  sales        Sale[]
 }
 
 model Invoice {
@@ -24,7 +24,7 @@ model Invoice {
   paid      String
   status    Int
   createdAt DateTime @default(now())
-  Sale      Sale[]
+  sales      Sale[]
 }
 
 model Sale {
