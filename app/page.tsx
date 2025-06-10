@@ -6,7 +6,7 @@ import DrinkForm from './ui/DrinkForm';
 import SalesTable from './ui/SalesTable'; // Create this component for the sales table view
 
 export default function HomePage() {
-  const [activeView, setActiveView] = useState<'drinkForm' | 'salesTable'>('drinkForm');
+  const [activeView, setActiveView] = useState<string>('drinkForm');
 
   return (
     <Box maxW="1000px" mx="auto" mt={8} p={4}>

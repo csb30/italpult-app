@@ -1,15 +1,15 @@
 import { Combobox, Portal } from "@chakra-ui/react"
 
 import { useFilter, useListCollection } from "@chakra-ui/react"
+import { useState } from "react";
 
 interface CustomerSelectProps {
     customers: string[];
     value: string;
     onChange: (value: string) => void;
-  }
+}
 
-export default function CustomerSelect( {customers, value, onChange}: CustomerSelectProps) {
-
+export default function CustomerSelect({ customers, value, onChange }: CustomerSelectProps) {
     const { contains } = useFilter({ sensitivity: "base" })
 
     const { collection, filter } = useListCollection({
@@ -17,13 +17,14 @@ export default function CustomerSelect( {customers, value, onChange}: CustomerSe
         filter: contains,
     })
 
+
     return (
         <Combobox.Root
             collection={collection}
-            onInputValueChange={(e) => {filter(e.inputValue); onChange(e.inputValue)}}
+            onInputValueChange={(e) => { filter(e.inputValue); onChange(e.inputValue) }}
         >
             <Combobox.Control>
-                <Combobox.Input value={value} placeholder="Vásárló" />
+                <Combobox.Input placeholder="Vásárló" value={value ? value : ""}/>
                 <Combobox.IndicatorGroup>
                     <Combobox.ClearTrigger />
                     <Combobox.Trigger />
