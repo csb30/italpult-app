@@ -2,6 +2,7 @@
 
 import { Popover, Portal, Button, Input, Text } from "@chakra-ui/react";
 import { Sale as PrismaSale, Drink } from "@prisma/client";
+import { RiInformation2Line } from "react-icons/ri";
 
 interface Sale extends PrismaSale {
   drink: Drink;
@@ -9,14 +10,15 @@ interface Sale extends PrismaSale {
 
 interface TablePopoverProps {
   sales: Sale[];
+  disabled?: boolean;
 }
 
-export default function TablePopover({ sales }: TablePopoverProps) {
+export default function TablePopover({ sales, disabled }: TablePopoverProps) {
     return (
         <Popover.Root size={"lg"}>
             <Popover.Trigger asChild>
-              <Button background={"teal"} variant="outline">
-                i
+              <Button background={"teal"} variant={"subtle"} disabled={disabled ? disabled : false}>
+                <RiInformation2Line />
               </Button>
             </Popover.Trigger>
             <Portal>
