@@ -3,7 +3,8 @@
 import { Box, Heading, Button, VStack, HStack } from '@chakra-ui/react';
 import { useState } from 'react';
 import DrinkForm from './ui/DrinkForm';
-import SalesTable from './ui/SalesTable'; // Create this component for the sales table view
+import SalesTable from './ui/SalesTable';
+import DrinksTable from './ui/DrinksTable';
 
 export default function HomePage() {
   const [activeView, setActiveView] = useState<string>('drinkForm');
@@ -28,12 +29,20 @@ export default function HomePage() {
         >
           Eladások
         </Button>
+        <Button
+          id='drinksTableButton'
+          colorPalette={activeView === 'drinksTable' ? 'teal' : 'gray'}
+          onClick={() => setActiveView('drinksTable')}
+        >
+          Italok
+        </Button>
       </HStack>
 
       {/* Conditional Rendering */}
       <VStack>
         {activeView === 'drinkForm' && <DrinkForm />}
         {activeView === 'salesTable' && <SalesTable />}
+        {activeView === 'drinksTable' && <DrinksTable />}
       </VStack>
     </Box>
   );

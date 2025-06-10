@@ -17,3 +17,13 @@ export async function POST(req: Request) {
   });
   return NextResponse.json(drink, { status: 201 });
 }
+
+export async function DELETE(req: Request) {
+  const body = await req.json();
+  const drink = await prisma.drink.delete({
+    where: {
+      id: body.id,
+    },
+  });
+  return NextResponse.json(drink, { status: 200 });
+}
