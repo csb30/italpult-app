@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { isAuthenticated } from '@/app/auth/isAuthenticated';
 
 export async function GET(req: NextRequest) {
+  if (!isAuthenticated(req)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   const id = req?.nextUrl?.searchParams.get('id')
   const status = req?.nextUrl?.searchParams.get('status')
   if (id) {
@@ -44,7 +49,11 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
+  if (!isAuthenticated(req)) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
   const body = await req.json();
   const invoice = await prisma.invoice.create({
     data: {
@@ -56,7 +65,11 @@ export async function POST(req: Request) {
   return NextResponse.json(invoice, { status: 201 });
 }
 
-export async function DELETE(req: Request) {
+export async function DELETE(req: NextRequest) {
+  if (!isAuthenticated(req)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   const body = await req.json();
   const sales = await prisma.sale.deleteMany({
     where: {
@@ -71,7 +84,11 @@ export async function DELETE(req: Request) {
   return NextResponse.json(invoice, { status: 200 });
 }
 
-export async function PATCH(req: Request) {
+export async function PATCH(req: NextRequest) {
+  if (!isAuthenticated(req)) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
   const body = await req.json();
   const invoice = await prisma.invoice.update({
     where: { id: body.id },

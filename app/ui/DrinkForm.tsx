@@ -80,7 +80,7 @@ export default function DrinkForm() {
         });
 
         setSuccess(`Sikeres tranzakció! Vásárló: ${customer}, Fizetési mód: ${type}`);
-        setTimeout(() => setError(null), 5000);
+        setTimeout(() => setSuccess(null), 5000);
 
         setSelected([]);
         setCustomer('');
